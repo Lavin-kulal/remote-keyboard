@@ -1,0 +1,22 @@
+{
+  "entryFile": "src/app.ts",
+  "noImplicitAdditionalProperties": "silently-remove-extras",
+  "controllerPathGlobs": ["src/**/*controller.ts"],
+  "spec": {
+    "outputDirectory": "src",
+    "specVersion": 3,
+    "tags": [],
+    "basePath": "/"
+  },
+  "routes": {
+    "routesDir": "src/routes",
+    "middleware": "express",
+    "routesFileName": "routes.ts"
+  },
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    }
+  }
+}

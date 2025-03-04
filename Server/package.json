@@ -1,0 +1,45 @@
+{
+  "name": "remote-keyboard-be",
+  "proxy": "http://localhost:5000",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/app.ts",
+    "generate:routes": "tsoa routes",
+    "generate:swagger": "tsoa spec",
+    "build": "npm run generate:routes && npm run generate:swagger && tsc",
+    "dev-start": "nodemon src/app.ts",
+    "dev-start-debug": "nodemon -L -e ts,js,json --exec node --inspect=0.0.0.0:9221 --require ts-node/register src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/joi": "^17.2.3",
+    "@types/node": "^22.13.4",
+    "@types/swagger-ui-express": "^4.1.7",
+    "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.1",
+    "node-cron": "^3.0.3",
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express-session": "^1.18.1",
+    "nodemon": "^3.1.9"
+  }
+}
