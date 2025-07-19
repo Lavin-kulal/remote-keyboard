@@ -15,30 +15,29 @@
 # EXPOSE 3002
 
 # CMD ["npm","start"]
-# --------- Build React Frontend ---------
+# ─── Build React Frontend ───
 FROM node:18-alpine AS frontend
 WORKDIR /app/frontend
-COPY ../Client/package*.json ./
+COPY Client/package*.json ./
 RUN npm install
-COPY ../Client ./
+COPY Client ./
 RUN npm run build
 
-# --------- Build Backend + Inject Frontend Build ---------
-FROM node:18-alpine
+# ─── Build Backend ───
+FROM node:18-alpine AS backend
 WORKDIR /usr/src/app
 
-# Optional: if using chromium inside backend
+# Optional: install chromium for backend
 RUN apk add --no-cache chromium
 
-COPY package*.json ./
+COPY Server/package*.json ./
 RUN npm install
+COPY Server .
 
-COPY . .
-
-# ⬇️ Copy frontend build into backend static serving dir
+# Copy frontend build into backend public
 COPY --from=frontend /app/frontend/build ./public
 
-# Port exposed by backend (you wrote EXPOSE 3002)
+# Port
 EXPOSE 3002
 
 CMD ["npm", "start"]
